@@ -1,4 +1,4 @@
-# Cough Detection Project: An Exploration in Audio Signal Processing
+# Cough Detection Project
 Welcome to the Cough Detection Project repository, an in-depth exploration into the domains of audio signal processing and machine learning. This project documents the development and implementation of algorithms dedicated to detecting cough timestamps and counts within audio signals. Below is an overview of the project's key components and milestones:
 
 ## Objective
