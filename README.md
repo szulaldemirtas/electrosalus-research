@@ -1,28 +1,34 @@
-# Cough Detection Project
-Welcome to the Cough Detection Project repository, an in-depth exploration into the domains of audio signal processing and machine learning. This project documents the development and implementation of algorithms dedicated to detecting cough timestamps and counts within audio signals. Below is an overview of the project's key components and milestones:
+# Cough Detection from Audio
 
-## Objective
-The primary objective of this project is to develop accurate and robust algorithms for detecting cough instances in audio recordings. This involves both time-based and frequency-based analysis of audio signals to identify distinct cough patterns amidst background noise.
+Signal-processing and machine-learning methods for detecting coughs in audio recordings, built during my machine learning internship at Electrosalus (2024). The work covers three tasks:
 
-## Dataset Creation
-The project initiated with the creation of a curated dataset comprising recordings of coughs and various ambient sounds. Each recording was carefully labeled and prepared to serve as training and testing data for the detection algorithms.
+1. **Cough extraction:** finding the start and end time of each cough in a recording
+2. **Cough vs. other sounds:** telling coughs apart from laughing, clapping, knocking, speech and crowd noise
+3. **Dry vs. wet coughs:** an early attempt at classifying cough type
 
-## Methodology
-### Time-Domain Analysis
-- **Signal Preprocessing**: Raw audio signals underwent preprocessing techniques such as time binning, moving average computation, and peak detection to enhance signal clarity and isolate cough instances.
-- **Algorithm Developmen**t: Custom algorithms were designed to detect cough timestamps and counts based on time-domain signal characteristics. Special attention was paid to eliminating false positives and optimizing algorithm performance.
+## Repository structure
 
-### Frequency-Domain Analysis
-- **Spectrogram Analysis**: Frequency-based analysis involved the generation and analysis of spectrograms to identify distinct frequency patterns associated with coughs.
-- **Filtering Techniques**: Various filtering techniques, including low-pass and high-pass filters, were applied to enhance signal clarity and isolate cough-related frequency components.
+| Folder | Contents |
+|---|---|
+| [`recordings-and-timestamps/`](recordings-and-timestamps) | The dataset: self-recorded, online and [COUGHVID](https://zenodo.org/records/4048312) audio, with start/end timestamps for each event |
+| [`cough-extraction/`](cough-extraction) | Notebooks that detect and cut out cough segments, in the time domain and the frequency domain, plus an evaluation notebook |
+| [`cough-classification/`](cough-classification) | Notebooks for feature extraction and classification (KNN, SVM, random forest, neural network) |
+| `filename-editor.ipynb` | Helper for renaming files and converting COUGHVID labels into timestamp files |
 
-### Feature Extraction
-- **Feature Selection**: Features such as percentile frequency values, Mel-Frequency Cepstral Coefficients (MFCCs), spectral centroids, and energy were extracted to characterize cough instances.
-- **Model Training**: Machine learning models including K-Nearest Neighbors, Support Vector Machines, Random Forests, and neural networks were trained using the extracted features to classify cough instances.
+Each folder has its own README with a description of every notebook.
 
-### Model Optimization
-- **Hyperparameter Tuning**: Grid search and cross-validation techniques were employed to optimize model performance by fine-tuning model parameters.
-- **Data Augmentation**: Noise addition technique was applied to augment the training dataset and improve model generalization.
+## Methods
 
-## Conclusion
-Despite the conclusion of the internship, the project continues to evolve. Ongoing efforts include refining detection algorithms, exploring new feature extraction methods, and enhancing model performance. Additionally, emphasis is placed on the integration of neural networks for improved accuracy and the classification of dry and wet coughs. 
+- **Preprocessing:** band-pass filtering, time binning, moving averages and normalisation
+- **Extraction:** threshold-based peak detection in the time domain and on spectrograms, evaluated against the labelled timestamps with precision, recall and F1
+- **Features:** frequency percentiles, MFCCs, spectral centroid and energy, with PCA for analysis
+- **Classification:** KNN, SVM and random forest tuned with grid search and 5-fold cross-validation; a PyTorch neural network on mel spectrograms with data augmentation (unfinished)
+
+## Results
+
+- **Cough vs. other sounds:** mean 5-fold cross-validation F1 of 0.96–0.97 across the models tested
+- **Dry vs. wet coughs:** mean F1 of 0.47–0.56; this task was still in progress when the internship ended, and the small labelled set is the main limitation
+
+## Running the notebooks
+
+The notebooks use Python with NumPy, SciPy, librosa, scikit-learn, PyTorch and Matplotlib. Some cells contain absolute paths from my machine; change them to your local copy of `recordings-and-timestamps/` before running.

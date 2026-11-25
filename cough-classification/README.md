@@ -1,15 +1,11 @@
 # Cough Classification
 
-## Overview
-This folder contains notebooks for classification of cough and other voices, and dry coughs and wet coughs.
+Notebooks that classify recordings as cough vs. other sounds, and coughs as dry vs. wet.
 
-## Contents
-- **cough-detection.ipynb**:  This notebook provides a comprehensive analysis of cough and other audio recordings, including classification using various machine learning algorithms for comparative evaluation.
-
-- **cough-detection-neural-network.ipynb**:  This notebook introduces neural networks or classifying coughs and other audio recordings using melspectrograms. Please note that it is a work in progress and is not yet completed.
- 
-- **classification-knn-svm.ipynb**: This notebook uses KNN and SVM algorithms to classify cough and other recordings. The prediction is based on percentile and MFCC features. It includes Principle Component Analysis.
-                                                    
-- **cough-dry-wet-detection.ipynb**:  This notebook aims to classify coughs as dry or wet. It is currently a work in progress, with ongoing improvements expected to enhance its performance.
-
-- **test-filter.ipynb**: This notebooks verifies the correctness of signal filter implementation.
+| Notebook | What it does |
+|---|---|
+| `cough-detection.ipynb` | Extracts audio features and compares several classifiers for cough vs. other sounds, with grid search and 5-fold cross-validation |
+| `classification-knn-svm.ipynb` | KNN and SVM classifiers on frequency-percentile and MFCC features, with principal component analysis |
+| `cough-detection-neural-network.ipynb` | Neural network on mel spectrograms (work in progress) |
+| `cough-dry-wet-detection.ipynb` | Classifies coughs as dry or wet (work in progress) |
+| `test-filter.ipynb` | Checks that the signal filter implementation is correct |
